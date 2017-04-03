@@ -289,7 +289,8 @@ var jsPDF = function (global) {
     'junior-legal': [576, 360],
     'ledger': [1224, 792],
     'tabloid': [792, 1224],
-    'credit-card': [153, 243]
+    'credit-card': [153, 243],
+    'office-label': [280.91, 191.90]
   };
 
   /**
@@ -4140,7 +4141,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  *               2014 Diego Casorran, https://github.com/diegocr
  *               2014 James Robb, https://github.com/jamesbrobb
  *
- * 
+ *
  */
 
 (function (jsPDFAPI) {
@@ -5154,7 +5155,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 
 /**
  * This plugin mimics the HTML5 Canvas
- * 
+ *
  * The goal is to provide a way for current canvas users to print directly to a PDF.
  */
 
@@ -5205,7 +5206,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  *               2014 James Hall, james@parall.ax
  *               2014 Diego Casorran, https://github.com/diegocr
  *
- * 
+ *
  * ====================================================================
  */
 
@@ -7171,7 +7172,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  *               2014 Wolfgang Gassler, https://github.com/woolfg
  *               2014 Steven Spungin, https://github.com/flamenco
  *
- * 
+ *
  * ====================================================================
  */
 
@@ -8141,11 +8142,11 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 	};
 })(jsPDF.API);
 
-/** ==================================================================== 
+/** ====================================================================
  * jsPDF JavaScript plugin
  * Copyright (c) 2013 Youssef Beddad, youssef.beddad@gmail.com
- * 
- * 
+ *
+ *
  * ====================================================================
  */
 
@@ -8204,7 +8205,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 		// pdf.internal.write("(page_" + (i + 1) + ")" + dests[i] + " 0
 		// R");
 		// }
-		//				
+		//
 		if (this.outline.root.children.length > 0) {
 			var lines = pdf.outline.render().split(/\r\n/);
 			for (var i = 0; i < lines.length; i++) {
@@ -8413,7 +8414,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  * jsPDF PNG PlugIn
  * Copyright (c) 2014 James Robb, https://github.com/jamesbrobb
  *
- * 
+ *
  * ====================================================================
  */
 
@@ -8955,7 +8956,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  *               2014 Diego Casorran, https://github.com/diegocr
  */
 /**
- * 
+ *
  * ====================================================================
  */
 
@@ -8965,7 +8966,7 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 	/**
  Returns an array of length matching length of the 'word' string, with each
  cell ocupied by the width of the char in that position.
- 
+
  @function
  @param word {String}
  @param widths {Object}
@@ -9013,13 +9014,13 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 	};
 	/**
  Returns a widths of string in a given font, if the font size is set as 1 point.
- 
+
  In other words, this is "proportional" value. For 1 unit of font size, the length
  of the string will be that much.
- 
+
  Multiply by font size to get actual width in *points*
  Then divide by 72 to get inches or divide by (72/25.6) to get 'mm' etc.
- 
+
  @public
  @function
  @param
@@ -9169,10 +9170,10 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
  (in measurement units declared as default for the jsPDF instance)
  and the font's "widths" and "Kerning" tables, where available, to
  determine display length of a given string for a given font.
- 
+
  We use character's 100% of unit size (height) as width when Width
  table or other default width is not available.
- 
+
  @public
  @function
  @param text {String} Unencoded, regular JavaScript (Unicode, UTF-16 / UCS-2) string.
@@ -9253,13 +9254,13 @@ AcroForm.internal.setBitPosition = function (variable, position, value) {
 	};
 })(jsPDF.API);
 
-/** @preserve 
+/** @preserve
 jsPDF standard_fonts_metrics plugin
 Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
 MIT license.
 */
 /**
- * 
+ *
  * ====================================================================
  */
 
@@ -9271,9 +9272,9 @@ MIT license.
  # only 'uncompress' function is featured lower as JavaScript
  # if you want to unit test "roundtrip", just transcribe the reference
  # 'compress' function from Python into JavaScript
- 
+
  def compress(data):
- 
+
  	keys =   '0123456789abcdef'
  	values = 'klmnopqrstuvwxyz'
  	mapping = dict(zip(keys, values))
@@ -9286,7 +9287,7 @@ MIT license.
  		except:
  			keystring = key.join(["'","'"])
  			#print('Keystring is %s' % keystring)
- 
+
  		try:
  			if value < 0:
  				valuestring = hex(value)[3:]
@@ -9300,41 +9301,41 @@ MIT license.
  				valuestring = compress(value)
  			else:
  				raise Exception("Don't know what to do with value type %s" % type(value))
- 
+
  		vals.append(keystring+valuestring)
- 	
+
  	return '{' + ''.join(vals) + '}'
- 
+
  def uncompress(data):
- 
+
  	decoded = '0123456789abcdef'
  	encoded = 'klmnopqrstuvwxyz'
  	mapping = dict(zip(encoded, decoded))
- 
+
  	sign = +1
  	stringmode = False
  	stringparts = []
- 
+
  	output = {}
- 
+
  	activeobject = output
  	parentchain = []
- 
+
  	keyparts = ''
  	valueparts = ''
- 
+
  	key = None
- 
+
  	ending = set(encoded)
- 
+
  	i = 1
  	l = len(data) - 1 # stripping starting, ending {}
  	while i != l: # stripping {}
  		# -, {, }, ' are special.
- 
+
  		ch = data[i]
  		i += 1
- 
+
  		if ch == "'":
  			if stringmode:
  				# end of string mode
@@ -9347,7 +9348,7 @@ MIT license.
  		elif stringmode == True:
  			#print("Adding %s to stringpart" % ch)
  			stringparts.append(ch)
- 
+
  		elif ch == '{':
  			# start of object
  			parentchain.append( [activeobject, key] )
@@ -9361,7 +9362,7 @@ MIT license.
  			key = None
  			activeobject = parent
  			#DEBUG = False
- 
+
  		elif ch == '-':
  			sign = -1
  		else:
@@ -9387,15 +9388,15 @@ MIT license.
  					valueparts = ''
  				else:
  					valueparts += ch
- 
+
  			#debug(activeobject)
- 
+
  	return output
- 
+
  */
 
 	/**
- Uncompresses data compressed into custom, base16-like format. 
+ Uncompresses data compressed into custom, base16-like format.
  @public
  @function
  @param
@@ -9489,7 +9490,7 @@ MIT license.
 		return output;
 	};
 
-	// encoding = 'Unicode' 
+	// encoding = 'Unicode'
 	// NOT UTF8, NOT UTF16BE/LE, NOT UCS2BE/LE. NO clever BOM behavior
 	// Actual 16bit char codes used.
 	// no multi-byte logic here
@@ -9498,8 +9499,8 @@ MIT license.
 	// {402: 131, 8211: 150, 8212: 151, 8216: 145, 8217: 146, 8218: 130, 8220: 147, 8221: 148, 8222: 132, 8224: 134, 8225: 135, 8226: 149, 8230: 133, 8364: 128, 8240:137, 8249: 139, 8250: 155, 710: 136, 8482: 153, 338: 140, 339: 156, 732: 152, 352: 138, 353: 154, 376: 159, 381: 142, 382: 158}
 	// as you can see, all Unicode chars are outside of 0-255 range. No char code conflicts.
 	// this means that you can give Win cp1252 encoded strings to jsPDF for rendering directly
-	// as well as give strings with some (supported by these fonts) Unicode characters and 
-	// these will be mapped to win cp1252 
+	// as well as give strings with some (supported by these fonts) Unicode characters and
+	// these will be mapped to win cp1252
 	// for example, you can send char code (cp1252) 0x80 or (unicode) 0x20AC, getting "Euro" glyph displayed in both cases.
 
 	var encodingBlock = {
@@ -9522,13 +9523,13 @@ MIT license.
 			//	, 'Symbol'
 			//	, 'ZapfDingbats'
 		} }
-	/** 
+	/**
  Resources:
  Font metrics data is reprocessed derivative of contents of
  "Font Metrics for PDF Core 14 Fonts" package, which exhibits the following copyright and license:
- 
+
  Copyright (c) 1989, 1990, 1991, 1992, 1993, 1997 Adobe Systems Incorporated. All Rights Reserved.
- 
+
  This file and the 14 PostScript(R) AFM files it accompanies may be used,
  copied, and distributed for any purpose and without charge, with or without
  modification, provided that all copyright notices are retained; that the AFM
@@ -9536,7 +9537,7 @@ MIT license.
  file or any of the AFM files are prominently noted in the modified file(s);
  and that this paragraph is not modified. Adobe Systems has no responsibility
  or obligation to support the use of the AFM files.
- 
+
  */
 	,
 	    fontMetrics = { 'Unicode': {
@@ -9615,7 +9616,7 @@ jsPDF SVG plugin
 Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
 */
 /**
- * 
+ *
  * ====================================================================
  */
 
@@ -9625,10 +9626,10 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
 	/**
  Parses SVG XML and converts only some of the SVG elements into
  PDF elements.
- 
+
  Supports:
   paths
- 
+
  @public
  @function
  @param
@@ -9762,11 +9763,11 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
 	};
 })(jsPDF.API);
 
-/** ==================================================================== 
+/** ====================================================================
  * jsPDF total_pages plugin
  * Copyright (c) 2013 Eduardo Menezes de Morais, eduardo.morais@usp.br
- * 
- * 
+ *
+ *
  * ====================================================================
  */
 
@@ -9786,11 +9787,11 @@ Copyright (c) 2012 Willow Systems Corporation, willow-systems.com
   };
 })(jsPDF.API);
 
-/** ==================================================================== 
+/** ====================================================================
  * jsPDF XMP metadata plugin
  * Copyright (c) 2016 Jussi Utunen, u-jussi@suomi24.fi
- * 
- * 
+ *
+ *
  * ====================================================================
  */
 
@@ -10685,8 +10686,8 @@ CssColors.colorNameToHex = function(color) {
  1. Redistributions of source code must retain the above copyright notice,
  this list of conditions and the following disclaimer.
 
- 2. Redistributions in binary form must reproduce the above copyright 
- notice, this list of conditions and the following disclaimer in 
+ 2. Redistributions in binary form must reproduce the above copyright
+ notice, this list of conditions and the following disclaimer in
  the documentation and/or other materials provided with the distribution.
 
  3. The names of the authors may not be used to endorse or promote products
@@ -12285,7 +12286,7 @@ var Deflater = (function(obj) {
 		function deflateReset(strm) {
 			strm.total_in = strm.total_out = 0;
 			strm.msg = null; //
-			
+
 			that.pending = 0;
 			that.pending_out = 0;
 
@@ -16259,8 +16260,8 @@ module.exports = XHR;
 # PNG.js
 # Copyright (c) 2011 Devon Govett
 # MIT LICENSE
-# 
-# 
+#
+#
 */
 
 
@@ -16723,7 +16724,7 @@ module.exports = XHR;
  *               Justin D'Arcangelo <justindarc@gmail.com>
  *               Yury Delendik
  *
- * 
+ *
  */
 
 var DecodeStream = (function() {
@@ -16912,7 +16913,7 @@ var FlateStream = (function() {
     0x50001, 0x50011, 0x50009, 0x50019, 0x50005, 0x50015, 0x5000d, 0x5001d,
     0x50003, 0x50013, 0x5000b, 0x5001b, 0x50007, 0x50017, 0x5000f, 0x00000
   ]), 5];
-  
+
   function error(e) {
       throw new Error(e)
   }
